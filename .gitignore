@@ -1,4 +1,5 @@
 .idea
 node_modules
-.gitignore
+./.gitignore
 package-lock.json
+tsconfig.json
