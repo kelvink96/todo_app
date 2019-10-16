@@ -31,6 +31,11 @@ app.get("/data", (req, res) => {
     })
 });
 
+// routes
+let addTodo = require("./routes/add_todo");
+
+app.use(addTodo);
+
 app.listen(port, () => {
     console.log(`app started at port ${port}`);
 });

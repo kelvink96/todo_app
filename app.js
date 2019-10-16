@@ -27,6 +27,9 @@ app.get("/data", function (req, res) {
         }
     });
 });
+// routes
+var addTodo = require("./routes/add_todo");
+app.use(addTodo);
 app.listen(port, function () {
     console.log("app started at port " + port);
 });
