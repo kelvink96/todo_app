@@ -13,13 +13,16 @@ app.set("port", port);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
+// home route
 app.get("/", (req, res) => {
-    res.send("hello world")
+    res.render("index", {
+        title: "home"
+    })
 });
 
 app.get("/data", (req, res) => {
-    Config.connect((err) =>{
-        if (err){
+    Config.connect((err) => {
+        if (err) {
             throw err;
         } else {
             console.log(`connected`);
@@ -27,8 +30,6 @@ app.get("/data", (req, res) => {
         }
     })
 });
-
-
 
 app.listen(port, () => {
     console.log(`app started at port ${port}`);

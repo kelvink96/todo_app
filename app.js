@@ -10,8 +10,11 @@ app.set("port", port);
 // set view engine: using pug
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
+// home route
 app.get("/", function (req, res) {
-    res.send("hello world");
+    res.render("index", {
+        title: "home"
+    });
 });
 app.get("/data", function (req, res) {
     Config.connect(function (err) {
