@@ -1,8 +1,10 @@
 import express = require("express");
 import path = require("path");
+import bodyParser = require("body-parser");
 
 const app = express();
 const port = process.env.PORT || 3000;
+export const urlEncodedParser = bodyParser.urlencoded({extended: false});
 
 // load config file
 let Config = require("./db");
@@ -34,6 +36,8 @@ app.get("/data", (req, res) => {
 // routes
 let addTodo = require("./routes/add_todo");
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(addTodo);
 
 app.listen(port, () => {

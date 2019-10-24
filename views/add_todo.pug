@@ -3,27 +3,13 @@ extends layout
 block content
     h1 #{title}
 
-    form(method="POST" action="/add_task").form-wrapper
-        .form-element
-            label title
-            br
-            input(type="text" placeholder="title" name="title")
-        br
-        .form-element
-            label description
-            br
-            textarea(placeholder="description" name="description")
-        br
-        .form-element
-            label start date
-            br
-            input(type="date" placeholder="start_date" name="start_date")
-        br
-        .form-element
-            label end date
-            br
-            input(type="date" placeholder="end_date" name="end_date")
-        .sub-tasks
-
-        br
+    form(method="post" action="/add_todo").form-wrapper
+        label title
+        input(type="text" placeholder="title" name="task_title")
+        label description
+        textarea(placeholder="description" name="description")
+        label start date
+        input(type="date" placeholder="start_date" name="start_date")
+        label end date
+        input(type="date" placeholder="end_date" name="end_date")
         button(type="submit") submit
