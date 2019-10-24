@@ -4,12 +4,16 @@ block content
     h1 #{title}
 
     form(method="post" action="/add_todo").form-wrapper
-        label title
-        input(type="text" placeholder="title" name="task_title")
-        label description
-        textarea(placeholder="description" name="description")
-        label start date
-        input(type="date" placeholder="start_date" name="start_date")
-        label end date
-        input(type="date" placeholder="end_date" name="end_date")
+        .form-group
+            label title
+            input(type="text" placeholder="title" name="task_title")
+        .form-group
+            label description
+            textarea(placeholder="description" name="description")
+        .form-group
+            label start date
+            input(type="date" placeholder="start_date" name="start_date")
+        .form-group
+            label end date
+            input(type="date" placeholder="end_date" name="end_date")
         button(type="submit") submit
