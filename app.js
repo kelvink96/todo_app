@@ -7,7 +7,7 @@ var app = express();
 var port = process.env.PORT || 3000;
 exports.urlEncodedParser = bodyParser.urlencoded({ extended: false });
 // load config file
-var Config = require("./db");
+var dbConfig = require("./db");
 app.set("port", port);
 // set view engine: using pug
 app.set("views", path.join(__dirname, "views"));
@@ -19,8 +19,9 @@ app.get("/", function (req, res) {
     });
 });
 app.get("/data", function (req, res) {
-    Config.connect(function (err) {
+    dbConfig.connect(function (err) {
         if (err) {
+            res.send(err);
             throw err;
         }
         else {

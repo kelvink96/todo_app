@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 export const urlEncodedParser = bodyParser.urlencoded({extended: false});
 
 // load config file
-let Config = require("./db");
+let dbConfig = require("./db");
 
 app.set("port", port);
 
@@ -23,8 +23,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/data", (req, res) => {
-    Config.connect((err) => {
+    dbConfig.connect((err) => {
         if (err) {
+            res.send(err);
             throw err;
         } else {
             console.log(`connected`);
