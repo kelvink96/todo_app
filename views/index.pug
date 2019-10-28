@@ -2,3 +2,8 @@ extends layout
 
 block content
     h1 #{title}
+    a(href=`/add_todo`) add todo
+    ul
+        each task, i in allTasks
+            li
+                p= task.title

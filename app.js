@@ -23,7 +23,8 @@ var allTasks, allResultsQuery = dbConfig.query("SELECT * FROM task", function (e
 // home route
 app.get("/", function (req, res) {
     res.render("index", {
-        title: "home"
+        title: "home",
+        allTasks: allTasks
     });
 });
 app.get("/data", function (req, res) {

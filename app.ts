@@ -27,7 +27,8 @@ let allTasks: Array<any>,
 // home route
 app.get("/", (req, res) => {
     res.render("index", {
-        title: "home"
+        title: "home",
+        allTasks: allTasks
     });
 });
 
