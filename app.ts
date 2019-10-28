@@ -15,11 +15,20 @@ app.set("port", port);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
+let allTasks: Array<any>,
+    allResultsQuery = dbConfig.query(
+        "SELECT * FROM task", (err, result: Array<any>) => {
+            if (err) {
+                console.log(err);
+            } else {
+                allTasks = result;
+            }
+        });
 // home route
 app.get("/", (req, res) => {
     res.render("index", {
         title: "home"
-    })
+    });
 });
 
 app.get("/data", (req, res) => {

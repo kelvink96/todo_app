@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "gulp watch",
-    "start": "nodemon app.js"
+    "gulp_watch": "gulp watch",
+    "nodemon": "nodemon app.js",
+    "test": "node app.js"
   },
   "keywords": [],
   "author": "Kelvin Kiptum Kiprop",

@@ -11,15 +11,13 @@ router.get("/add_todo", (req, res) => {
 });
 
 // post todo item
-// Todo fix not posting request to body
 router.post("/add_todo", urlEncodedParser, (req, res, next) => {
     dbConfig.connect((err) => {
         if (err) {
             res.send(err);
             throw err;
         } else {
-            console.log("connected");
-            let sql = "INSERT INTO `task` (`title`, `description`, `start_date`, `end_date`) " +
+            let sql = "INSERT INTO task (`title`, `description`, `start_date`, `end_date`) " +
                 "VALUES " +
                 "('" + req.body.task_title + "', '" + req.body.description + "', '" + req.body.start_date + "', '" + req.body.end_date + "')";
             dbConfig.query(sql, (err, resp) => {

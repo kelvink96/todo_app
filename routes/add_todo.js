@@ -10,7 +10,6 @@ router.get("/add_todo", function (req, res) {
     });
 });
 // post todo item
-// Todo fix not posting request to body
 router.post("/add_todo", app_1.urlEncodedParser, function (req, res, next) {
     dbConfig.connect(function (err) {
         if (err) {
@@ -18,8 +17,7 @@ router.post("/add_todo", app_1.urlEncodedParser, function (req, res, next) {
             throw err;
         }
         else {
-            console.log("connected");
-            var sql = "INSERT INTO `task` (`title`, `description`, `start_date`, `end_date`) " +
+            var sql = "INSERT INTO task (`title`, `description`, `start_date`, `end_date`) " +
                 "VALUES " +
                 "('" + req.body.task_title + "', '" + req.body.description + "', '" + req.body.start_date + "', '" + req.body.end_date + "')";
             dbConfig.query(sql, function (err, resp) {
