@@ -13,26 +13,18 @@ router.get("/add_todo", (req, res) => {
 // post atodo item
 // fixme error when posting to DB
 router.post("/add_todo", urlEncodedParser, (req, res, next) => {
-    dbConfig.connect((err) => {
+    console.log("connected");
+    let sql = "INSERT INTO `task` (`title`, `description`, `start_date`, `end_date`) " +
+        "VALUES " +
+        "('" + req.body.task_title + "', '" + req.body.description + "', '" + req.body.start_date + "', '" + req.body.end_date + "')";
+    dbConfig.query(sql, (err, resp) => {
         if (err) {
-            res.send(err);
             throw err.code;
         } else {
-            console.log("connected");
-            let sql = "INSERT INTO `task` (`title`, `description`, `start_date`, `end_date`) " +
-                "VALUES " +
-                "('" + req.body.task_title + "', '" + req.body.description + "', '" + req.body.start_date + "', '" + req.body.end_date + "')";
-            dbConfig.query(sql, (err, resp) => {
-                if (err) {
-                    throw err.code;
-                } else {
-                    console.log(`task ${req.body.task_title} added`);
-                    res.redirect('/data');
-                }
-            })
+            console.log(`task ${req.body.task_title} added`);
+            res.redirect('/');
         }
     });
-    dbConfig.end();
 });
 
 module.exports = router;

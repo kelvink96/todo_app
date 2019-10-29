@@ -12,21 +12,6 @@ app.set("port", port);
 // set view engine: using pug
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
-var allTasks, allResultsQuery = dbConfig.query("SELECT * FROM task", function (err, result) {
-    if (err) {
-        console.log(err);
-    }
-    else {
-        allTasks = result;
-    }
-});
-// home route
-app.get("/", function (req, res) {
-    res.render("index", {
-        title: "home",
-        allTasks: allTasks
-    });
-});
 app.get("/data", function (req, res) {
     dbConfig.connect(function (err) {
         if (err) {
@@ -41,9 +26,11 @@ app.get("/data", function (req, res) {
 });
 // routes
 var addTodo = require("./routes/add_todo");
+var index = require("./routes/index");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(addTodo);
+app.use(index);
 app.listen(port, function () {
     console.log("app started at port " + port);
 });
