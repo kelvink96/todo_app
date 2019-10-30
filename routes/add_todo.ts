@@ -1,5 +1,5 @@
 import express = require("express");
-import {urlEncodedParser} from "../app";
+import {urlEncodedParser} from "../server";
 
 const router = express.Router();
 let dbConfig = require("../db");

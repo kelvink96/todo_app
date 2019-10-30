@@ -1,4 +1,5 @@
 import express = require("express");
+import io = require("socket.io");
 
 const router = express.Router();
 let dbConfig = require("../db");
