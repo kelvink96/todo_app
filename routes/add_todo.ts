@@ -22,7 +22,7 @@ router.post("/add_todo", urlEncodedParser, (req, res, next) => {
             throw err.code;
         } else {
             console.log(`task ${req.body.task_title} added`);
-            res.redirect('/');
+            res.redirect('/home');
         }
     });
 });

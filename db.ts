@@ -1,10 +1,11 @@
 import mysql = require("mysql");
 
-let config = mysql.createConnection({
+let connection = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
     database: "todo_node"
 });
 
-module.exports = config;
+connection.connect();
+module.exports = connection;

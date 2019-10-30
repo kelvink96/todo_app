@@ -2,7 +2,8 @@ extends layout
 
 block content
     h1 #{title}
-
+    a(href="/home") home
+    br
     form(method="post" action="/add_todo").form-wrapper
         .form-group
             label title

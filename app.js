@@ -6,27 +6,12 @@ var bodyParser = require("body-parser");
 var app = express();
 var port = process.env.PORT || 3000;
 exports.urlEncodedParser = bodyParser.urlencoded({ extended: false });
-// load config file
-var dbConfig = require("./db");
 app.set("port", port);
 // set view engine: using pug
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
-app.get("/data", function (req, res) {
-    dbConfig.connect(function (err) {
-        if (err) {
-            res.send(err);
-            throw err;
-        }
-        else {
-            console.log("connected");
-            res.send("database connected");
-        }
-    });
-});
 // routes
-var addTodo = require("./routes/add_todo");
-var index = require("./routes/index");
+var addTodo = require("./routes/add_todo"), index = require("./routes/index");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(addTodo);
