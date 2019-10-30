@@ -1,24 +1,26 @@
 import express = require("express");
-import io = require("socket.io");
 
-const router = express.Router();
-let dbConfig = require("../db");
+module.exports = () => {
+    const router = express.Router();
+    let dbConfig = require("../db");
 
-let allTasks: Array<any>,
-    allResultsQuery = dbConfig.query("SELECT * FROM task", (err, rows: Array<any>) => {
+    let allTasks: Array<any>,
+        allResultsQuery = dbConfig.query("SELECT * FROM task", (err, rows: Array<any>) => {
             if (err) {
                 console.log(err);
+                dbConfig.end();
             } else {
                 allTasks = rows;
             }
         });
 
-// home route
-router.get("/home", (req, res) => {
-    res.render("index", {
-        title: "home",
-        allTasks: allTasks
+    // home route
+    router.get("/home", (req, res) => {
+        res.render("index", {
+            title: "home",
+            allTasks: allTasks
+        });
     });
-});
 
-module.exports = router;
+    return router;
+};

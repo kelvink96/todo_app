@@ -1,25 +1,28 @@
+import http = require("http");
 import express = require("express");
 import path = require("path");
 import bodyParser = require("body-parser");
 
-const server = express();
+const app = express();
+const server = http.createServer(app);
 const port = process.env.PORT || 3000;
+const io = require("socket.io").listen(server);
 export const urlEncodedParser = bodyParser.urlencoded({extended: false});
 
-server.set("port", port);
+app.set("port", port);
 
 // set view engine: using pug
-server.set("views", path.join(__dirname, "views"));
-server.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
 
 // routes
-let addTodo = require("./routes/add_todo"),
-    index = require("./routes/index");
+let addTodo = require("./routes/add_todo")(io),
+    index = require("./routes/index")(io);
 
-server.use(bodyParser.json());
-server.use(bodyParser.urlencoded({extended: false}));
-server.use(addTodo);
-server.use(index);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(addTodo);
+app.use(index);
 
 server.listen(port, () => {
     console.log(`app started at port ${port}`);
