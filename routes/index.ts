@@ -4,7 +4,7 @@ module.exports = () => {
     const router = express.Router();
     let dbConfig = require("../db");
 
-    let allTasks: Array<any>,
+    let allTasks: Array<any> = [],
         allResultsQuery = dbConfig.query("SELECT * FROM task", (err, rows: Array<any>) => {
             if (err) {
                 console.log(err);

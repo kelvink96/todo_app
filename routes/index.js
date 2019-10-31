@@ -4,7 +4,7 @@ var express = require("express");
 module.exports = function () {
     var router = express.Router();
     var dbConfig = require("../db");
-    var allTasks, allResultsQuery = dbConfig.query("SELECT * FROM task", function (err, rows) {
+    var allTasks = [], allResultsQuery = dbConfig.query("SELECT * FROM task", function (err, rows) {
         if (err) {
             console.log(err);
             dbConfig.end();
